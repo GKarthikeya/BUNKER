@@ -1,25 +1,6 @@
-# Web framework
 Flask==2.3.2
-
-# HTTP requests
-requests>=2.31.0
-
-# Numerical and data processing
 numpy>=1.25.2,<2.4
 pandas>=2.1.0,<2.2
-
-# Date/time utilities
 python-dateutil>=2.8.2
-
-# Optional environment variables management
+requests>=2.31.0
 python-dotenv>=1.0.0
-
-# Optional database support
-SQLAlchemy>=2.0.20
-
-# Optional forms & validation
-WTForms>=3.0.1
-
-# Ensure pip uses pre-built wheels to avoid compilation issues
-setuptools>=68.0.0
-wheel>=0.40.0
