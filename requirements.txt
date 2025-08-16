@@ -1,3 +1,21 @@
+# Web framework
 Flask==2.3.2
-requests>=2.31
-numpy==1.26.0
+
+# HTTP requests
+requests>=2.31.0
+
+# Data processing / numerical operations
+numpy>=1.25.2,<2.4
+pandas>=2.1.0,<2.2
+
+# Date and time handling
+python-dateutil>=2.8.2
+
+# Optional: Environment management
+python-dotenv>=1.0.0
+
+# Optional: Database
+SQLAlchemy>=2.0.20
+
+# Optional: For forms and validation
+WTForms>=3.0.1
