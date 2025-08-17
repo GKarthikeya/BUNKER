@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template_string
 import math
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -22,7 +23,6 @@ TIMETABLE = {
 
 # -----------------------------
 # HTML Templates
-# -----------------------------
 FORM_HTML = """
 <!DOCTYPE html>
 <html>
@@ -158,8 +158,6 @@ RESULT_HTML = """
 </html>
 """
 
-
-
 # -----------------------------
 # Routes
 # -----------------------------
@@ -224,7 +222,7 @@ def compute_and_render_result(date, present, absent, bunk_k):
         safe_bunks=safe_bunks
     )
 
-
 # -----------------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
