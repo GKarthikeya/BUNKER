@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Periods</title>
+</head>
+<body>
+  <h2>Select Periods to Bunk on {{ date }}</h2>
+  <form method="post" action="/result">
+    <input type="hidden" name="present" value="{{ present }}">
+    <input type="hidden" name="absent" value="{{ absent }}">
+    <input type="hidden" name="date" value="{{ date }}">
+    {% for i in range(1, periods+1) %}
+      <input type="checkbox" name="periods" value="{{ i }}"> Period {{ i }}<br>
+    {% endfor %}
+    <button type="submit">Calculate</button>
+  </form>
+</body>
+</html>

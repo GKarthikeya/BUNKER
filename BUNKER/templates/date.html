@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Date</title>
+</head>
+<body>
+  <h2>Select Date to Bunk</h2>
+  <form method="post" action="/bunk_option">
+    <input type="hidden" name="present" value="{{ present }}">
+    <input type="hidden" name="absent" value="{{ absent }}">
+    <label for="date">Pick a date:</label>
+    <input type="date" name="date" required><br><br>
+    <input type="radio" name="option" value="whole" required> Whole Day<br>
+    <input type="radio" name="option" value="period"> Specific Periods<br>
+    <button type="submit">Next</button>
+  </form>
+</body>
+</html>
