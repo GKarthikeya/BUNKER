@@ -30,18 +30,21 @@ def home():
 
 @app.route("/select_date", methods=["POST"])
 def select_date():
-    present = int(request.form["present"])
-    absent = int(request.form["absent"])
+    try:
+        present = int(request.form.get("present", 0))
+        absent = int(request.form.get("absent", 0))
+    except ValueError:
+        present, absent = 0, 0
     return render_template("date.html", present=present, absent=absent)
 
 @app.route("/bunk_option", methods=["POST"])
 def bunk_option():
-    present = int(request.form["present"])
-    absent = int(request.form["absent"])
-    date = request.form["date"]
-    option = request.form["option"]
+    present = int(request.form.get("present", 0))
+    absent = int(request.form.get("absent", 0))
+    date = request.form.get("date", "")
+    option = request.form.get("option", "")
 
-    weekday = datetime.strptime(date, "%Y-%m-%d").strftime("%A")
+    weekday = datetime.strptime(date, "%Y-%m-%d").strftime("%A") if date else ""
     if option == "whole":
         bunk_k = TIMETABLE.get(weekday, 0)
         return compute_and_render_result(date, present, absent, bunk_k)
@@ -51,9 +54,9 @@ def bunk_option():
 
 @app.route("/result", methods=["POST"])
 def show_periods_or_result():
-    present = int(request.form["present"])
-    absent = int(request.form["absent"])
-    date = request.form["date"]
+    present = int(request.form.get("present", 0))
+    absent = int(request.form.get("absent", 0))
+    date = request.form.get("date", "")
     selected_periods = request.form.getlist("periods")
     bunk_k = len(selected_periods)
     return compute_and_render_result(date, present, absent, bunk_k)
@@ -87,4 +90,4 @@ def compute_and_render_result(date, present, absent, bunk_k):
 # -----------------------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=False)
